@@ -41,3 +41,17 @@
 {"level":"INFO","time":"2022-11-28T22:46:09.366+0800","caller":"logger/logger.go:86","msg":"/login","status":200,"method":"POST","path":"/login","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.0089385}
 {"level":"ERROR","time":"2022-11-28T22:46:16.816+0800","caller":"controller/user.go:79","msg":"SignUp with invalid param","username":"Sullivan2","error":"用户不存在"}
 {"level":"INFO","time":"2022-11-28T22:46:16.816+0800","caller":"logger/logger.go:86","msg":"/login","status":200,"method":"POST","path":"/login","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.0016864}
+{"level":"INFO","time":"2022-11-30T21:12:42.597+0800","caller":"logger/logger.go:49","msg":"init logger success"}
+{"level":"ERROR","time":"2022-11-30T21:12:54.468+0800","caller":"controller/user.go:78","msg":"SignUp with invalid param","username":"Sullivan2","error":"用户不存在"}
+{"level":"INFO","time":"2022-11-30T21:12:54.468+0800","caller":"logger/logger.go:86","msg":"/login","status":200,"method":"POST","path":"/login","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.0643846}
+{"level":"INFO","time":"2022-11-30T21:13:01.826+0800","caller":"logger/logger.go:86","msg":"/login","status":200,"method":"POST","path":"/login","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.0021686}
+{"level":"INFO","time":"2022-11-30T21:13:24.235+0800","caller":"logger/logger.go:86","msg":"/ping","status":404,"method":"POST","path":"/ping","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0}
+{"level":"INFO","time":"2022-11-30T21:14:12.401+0800","caller":"logger/logger.go:86","msg":"/ping","status":200,"method":"GET","path":"/ping","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0}
+{"level":"INFO","time":"2022-11-30T21:40:28.184+0800","caller":"logger/logger.go:49","msg":"init logger success"}
+{"level":"INFO","time":"2022-11-30T21:40:45.884+0800","caller":"logger/logger.go:86","msg":"/login","status":200,"method":"POST","path":"/login","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.0363388}
+{"level":"INFO","time":"2022-11-30T21:41:08.134+0800","caller":"logger/logger.go:86","msg":"/ping","status":200,"method":"GET","path":"/ping","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.0009995}
+{"level":"INFO","time":"2022-11-30T21:41:13.619+0800","caller":"logger/logger.go:86","msg":"/ping","status":200,"method":"GET","path":"/ping","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0}
+{"level":"INFO","time":"2022-12-01T02:36:51.683+0800","caller":"logger/logger.go:49","msg":"init logger success"}
+{"level":"INFO","time":"2022-12-01T02:37:12.104+0800","caller":"logger/logger.go:86","msg":"/login","status":200,"method":"POST","path":"/login","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.068188}
+{"level":"INFO","time":"2022-12-01T02:37:28.848+0800","caller":"logger/logger.go:86","msg":"/ping","status":200,"method":"GET","path":"/ping","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0}
+{"level":"INFO","time":"2022-12-01T02:37:33.783+0800","caller":"logger/logger.go:86","msg":"/ping","status":200,"method":"GET","path":"/ping","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0}

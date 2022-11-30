@@ -12,6 +12,14 @@ type ResponseData struct {
 	Data interface{} `json:"data"` //数据
 }
 
+// ResponseAuthenticationError 返回请求头格式错误
+func ResponseAuthenticationError(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{
+		"code": 2004,
+		"msg":  "请求头中auth格式有误",
+	})
+}
+
 // ResponseError 返回错误消息
 func ResponseError(c *gin.Context, code ResCode) {
 	rd := &ResponseData{

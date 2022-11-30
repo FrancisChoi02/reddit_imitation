@@ -73,7 +73,8 @@ func LoginHandler(c *gin.Context) {
 		return
 	}
 	//2.业务逻辑处理
-	if err := logic.Login(&p); err != nil {
+	token, err := logic.Login(&p)
+	if err != nil {
 		zap.L().Error("SignUp with invalid param", zap.String("username", p.Username), zap.Error(err))
 		//返回登陆失败消息
 		if errors.Is(err, mysql.ErrorUserNotExist) { //mysql包里面的ErrorUserExist报错字串
@@ -85,5 +86,5 @@ func LoginHandler(c *gin.Context) {
 	}
 
 	//3.返回响应
-	ResponseSuccess(c, nil)
+	ResponseSuccess(c, token) //将token字符串放到赋值给data成员变量传给前端
 }
