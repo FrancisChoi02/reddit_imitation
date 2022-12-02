@@ -25,10 +25,20 @@ func SetupRouter(mode string) *gin.Engine {
 		c.HTML(http.StatusOK, "index.html", nil)
 	})
 
+	v1 := r.Group("/api/v1")
+
 	//注册业务路由
-	r.POST("/signup", controller.SignUpHandler)
+	v1.POST("/signup", controller.SignUpHandler)
 	//登录业务路由
-	r.POST("/login", controller.LoginHandler)
+	v1.POST("/login", controller.LoginHandler)
+
+	//社区分类相关路由
+	v1.Use(middlewares.JWTAuthMiddleware())
+
+	{
+		v1.GET("/community", controller.CommunityHandler)           //获取所有社区分类的列表
+		v1.GET("/community/:id", controller.CommunityDetailHandler) //获取某个指定ID的社区分类的内容
+	}
 
 	r.GET("/ping", middlewares.JWTAuthMiddleware(), func(c *gin.Context) {
 		//如果是登录用户，通过中间件判断请求头中是否有 有效的JWT

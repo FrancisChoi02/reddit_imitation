@@ -3,11 +3,12 @@ package jwt
 import (
 	"errors"
 	"github.com/dgrijalva/jwt-go"
+	"github.com/spf13/viper"
 	"time"
 )
 
 // Token有效期
-const TokenExpireDuration = time.Hour * 2
+//const TokenExpireDuration = time.Hour * 2   //改为从yaml文件中获取
 
 // 用于加密签名的密钥
 var myKey = []byte("Francis")
@@ -27,8 +28,9 @@ func GenToken(userID int64, username string) (string, error) {
 		userID,
 		username,
 		jwt.StandardClaims{
-			ExpiresAt: time.Now().Add(TokenExpireDuration).Unix(), //过期时间
-			Issuer:    "reddit",                                   //签发人
+			ExpiresAt: time.Now().Add(
+				time.Duration(viper.GetInt("auth.jwt_expire")) * time.Hour).Unix(), //过期时间  365 *24 * hour
+			Issuer: "reddit", //签发人
 		},
 	}
 
