@@ -55,3 +55,5 @@
 {"level":"INFO","time":"2022-12-01T02:37:12.104+0800","caller":"logger/logger.go:86","msg":"/login","status":200,"method":"POST","path":"/login","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.068188}
 {"level":"INFO","time":"2022-12-01T02:37:28.848+0800","caller":"logger/logger.go:86","msg":"/ping","status":200,"method":"GET","path":"/ping","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0}
 {"level":"INFO","time":"2022-12-01T02:37:33.783+0800","caller":"logger/logger.go:86","msg":"/ping","status":200,"method":"GET","path":"/ping","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0}
+{"level":"INFO","time":"2022-12-02T02:14:05.437+0800","caller":"logger/logger.go:49","msg":"init logger success"}
+{"level":"INFO","time":"2022-12-02T12:40:59.506+0800","caller":"logger/logger.go:49","msg":"init logger success"}
