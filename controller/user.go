@@ -54,9 +54,8 @@ func SignUpHandler(c *gin.Context) {
 
 func LoginHandler(c *gin.Context) {
 	//1.获取参数 和 参数校验
-	var p models.ParamSignUp //初始化用于获取请求参数的结构体
+	var p models.ParamLogin //初始化用于获取请求参数的结构体
 	if err := c.ShouldBind(&p); err != nil {
-
 		// 获取validator.ValidationErrors类型的errors
 		errs, ok := err.(validator.ValidationErrors)
 		if !ok {

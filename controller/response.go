@@ -7,9 +7,9 @@ import (
 
 //用于 给前端返回消息 的结构体
 type ResponseData struct {
-	Code ResCode     `json:"code"` //程序的错误码
-	Msg  interface{} `json:"msg"`  //提示信息
-	Data interface{} `json:"data"` //数据
+	Code ResCode     `json:"code"`           //程序的错误码
+	Msg  interface{} `json:"msg"`            //提示信息
+	Data interface{} `json:"data,omitempty"` //数据
 }
 
 // ResponseAuthenticationError 返回请求头格式错误
