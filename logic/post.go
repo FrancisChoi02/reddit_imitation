@@ -105,3 +105,56 @@ func GetPostList(page int64, size int64) (data []*models.ApiPostDetail, err erro
 
 	return
 }
+
+// GetPostListInOrder 根据Order参数表达的方式  返回所有帖子
+func GetPostListInOrder(p *models.ParamPostList) (data []*models.ApiPostDetail, err error) {
+	// 1.根据p.Order从redis中获取对应的id列表（key）
+	ids, err := redis.GetPostIDsInOrder(p)
+	if err != nil {
+		return
+	}
+	if len(ids) == 0 {
+		zap.L().Warn("redis.GetPostIDsInOrder(p) returned 0 data")
+		return
+	}
+
+	// 2.根据id列表，从MySQL中查询帖子的详细信息
+	postList, err := mysql.GetPostIDsInOrder(ids)
+	if err != nil {
+		return
+	}
+
+	// 3. 与GetPostList()的处理方式相同，组装结果切片
+	//将帖子作者、分区信息 查询出并填充到帖子结果切片中
+	data = make([]*models.ApiPostDetail, 0, len(postList)) //为结果数组分配空间
+
+	for _, post := range postList {
+
+		//某一个数据获取错误不需要返回，记录在日志即可，允许返回空数据
+		user, err := mysql.GetUserById(post.AuthorID)
+		if err != nil {
+			zap.L().Error("mysql.GetUserById(post.AuthorID) failed",
+				zap.Int64("id", post.AuthorID),
+				zap.Error(err))
+			continue
+		}
+
+		community, err := mysql.GetCommunityDetailByID(post.CommunityID)
+		if err != nil {
+			zap.L().Error("mysql.GetCommunityDetailByID(post.CommunityID) failed",
+				zap.Int64("id", post.CommunityID),
+				zap.Error(err))
+			continue
+		}
+		dataDetail := &models.ApiPostDetail{
+			AuthorName:      user.Username,
+			Post:            post,
+			CommunityDetail: community,
+		}
+
+		data = append(data, dataDetail)
+	}
+
+	return
+
+}

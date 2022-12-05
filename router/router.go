@@ -40,8 +40,8 @@ func SetupRouter(mode string) *gin.Engine {
 		v1.GET("/community/:id", controller.CommunityDetailHandler) //获取某个指定ID的社区分类的内容
 		v1.POST("/post", controller.CreatePostHandler)              //发布帖子
 		v1.GET("/post/:id", controller.GetPostDetailHandler)        //根据ID查看帖子
-		v1.GET("/postList/", controller.GetPostListHandler)         //查看帖子列表
-
+		v1.GET("/postList", controller.GetPostListHandler)          //查看帖子列表
+		v1.GET("/postListWithOrder", controller.GetOrderPostListHandler)
 		//投票
 		v1.POST("/vote", controller.PostVoteController)
 	}

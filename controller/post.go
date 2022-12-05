@@ -84,3 +84,28 @@ func GetPostListHandler(c *gin.Context) {
 	}
 	ResponseSuccess(c, data)
 }
+
+// GetOrderPostListHandler
+func GetOrderPostListHandler(c *gin.Context) {
+	//请求参数是URL中的query 因此请求参数的结构体tag 使用 form
+	//初始化结构体时指定初始参数
+	p := &models.ParamPostList{
+		Page:  1,
+		Size:  10,
+		Order: models.OrderTime,
+	}
+	if err := c.ShouldBind(p); err != nil {
+		zap.L().Error("GetOrderPostListHandler with invalid params", zap.Error(err))
+		ResponseError(c, CodeInvalidParam)
+		return
+	}
+
+	//获取列表数据
+	data, err := logic.GetPostListInOrder(p)
+	if err != nil {
+		zap.L().Error("logic.GetPostList() failed", zap.Error(err))
+		ResponseError(c, CodeServerBusy)
+		return
+	}
+	ResponseSuccess(c, data)
+}
