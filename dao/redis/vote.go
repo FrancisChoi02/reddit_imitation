@@ -4,6 +4,7 @@ import (
 	"errors"
 	"github.com/go-redis/redis"
 	"math"
+	"strconv"
 	"time"
 )
 
@@ -39,7 +40,7 @@ var (
 	ErrVoteRepeated   = errors.New("不允许重复投票")
 )
 
-func CreatePost(postID int64) (err error) {
+func CreatePost(postID int64, communityID int64) (err error) {
 	//两个键值对的保存，要保证全部都能正常执行，因此要用 事务
 	pipeline := client.TxPipeline()
 
@@ -54,6 +55,10 @@ func CreatePost(postID int64) (err error) {
 		Score:  float64(time.Now().Unix()), //当前时间（秒）
 		Member: postID,
 	})
+
+	//把帖子的id 加到对应社区的set中
+	cKey := getRedisKey(KeyCommunitySetPrefix + strconv.Itoa(int(communityID)))
+	pipeline.SAdd(cKey, postID)
 
 	_, err = pipeline.Exec()
 	return err

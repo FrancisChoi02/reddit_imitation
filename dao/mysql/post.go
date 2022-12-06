@@ -40,7 +40,7 @@ func GetPostList(page int64, size int64) (postList []*models.Post, err error) {
 }
 
 // GetPostListByIDs 根据给定的id列表查询帖子数据
-func GetPostIDsInOrder(ids []string) (postList []*models.Post, err error) {
+func GetPostListByIDs(ids []string) (postList []*models.Post, err error) {
 	sqlStr := `select post_id, title, content, author_id, community_id, create_time
 				from post
 				where post_id in (?)

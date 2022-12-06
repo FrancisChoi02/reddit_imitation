@@ -30,7 +30,8 @@ type ParmVoteData struct {
 
 // ParamPostList 获取帖子列表URL中的query string参数
 type ParamPostList struct {
-	Page  int64  `json:"page" form:"page"` //因为从URL中获取参数，因此使用form tag
-	Size  int64  `json:"size" form:"size"`
-	Order string `json:"order" form:"order"`
+	Page        int64  `json:"page" form:"page"` //因为从URL中获取参数，因此使用form tag
+	Size        int64  `json:"size" form:"size"`
+	Order       string `json:"order" form:"order"`
+	CommunityID int64  `json:"community_id" form:"community_id"` //可以为空 初值是0
 }

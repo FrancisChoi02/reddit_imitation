@@ -85,8 +85,8 @@ func GetPostListHandler(c *gin.Context) {
 	ResponseSuccess(c, data)
 }
 
-// GetOrderPostListHandler
-func GetOrderPostListHandler(c *gin.Context) {
+// GetOrderPostListHandler 根据order参数的排序类型 查看帖子列表
+func GetPostListRouter(c *gin.Context) {
 	//请求参数是URL中的query 因此请求参数的结构体tag 使用 form
 	//初始化结构体时指定初始参数
 	p := &models.ParamPostList{
@@ -94,6 +94,7 @@ func GetOrderPostListHandler(c *gin.Context) {
 		Size:  10,
 		Order: models.OrderTime,
 	}
+	// 获取请求的query string参数
 	if err := c.ShouldBind(p); err != nil {
 		zap.L().Error("GetOrderPostListHandler with invalid params", zap.Error(err))
 		ResponseError(c, CodeInvalidParam)
@@ -101,7 +102,7 @@ func GetOrderPostListHandler(c *gin.Context) {
 	}
 
 	//获取列表数据
-	data, err := logic.GetPostListInOrder(p)
+	data, err := logic.GetPostListRouter(p)
 	if err != nil {
 		zap.L().Error("logic.GetPostList() failed", zap.Error(err))
 		ResponseError(c, CodeServerBusy)
